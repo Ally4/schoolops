@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: "Give a tag to an image"
       - build:
-        run: "docker build -t ally4/beginning-docker:v2 ."
+        run: docker build -t ally4/beginning-docker:v2 .
         # -image: "docker push ally4/beginning-docker:v2"
         # with:
         #   repo_token: "${{ secrets.GITHUB_TOKEN }}"
