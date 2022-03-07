@@ -25,6 +25,6 @@ jobs:
       #     push: true
       #     tags: ally4/beginning-docker:latest
       - name: 
-      - runs: |
+      - run: |
           docker build -t ally4/beginning-docker:v2 .
           docker push ally4/beginning-docker:v2
