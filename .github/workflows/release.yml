@@ -3,9 +3,8 @@ name: Release
 
 # Run on every commit tag which begins with "v" (e.g., "v0.1.4")
 on:
-  push:
-    tags:
-      - "v0.1"
+  merge_request: 
+    branches: [main]
 
 # Automatically create a GitHub Release, with release details specified (the relevant commits)
 jobs:
@@ -13,10 +12,14 @@ jobs:
     name: "Release"
     runs-on: "ubuntu-latest"
     steps:
-      - name: "Give a tag to an image"
-      - build:
-        run: docker build -t ally4/beginning-docker:v2 .
-        # -image: "docker push ally4/beginning-docker:v2"
-        # with:
-        #   repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        #   prerelease: false
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ally4/beginning-docker:latest
