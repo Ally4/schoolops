@@ -1,7 +1,5 @@
-# Name of the workflow
 name: Release
 
-# Run on every commit tag which begins with "v" (e.g., "v0.1.4")
 on:
   pull_request: 
     types:
@@ -20,9 +18,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ally4/beginning-docker:latest
+      # - name: Build and push
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ally4/beginning-docker:latest
+      - name: 
+      - runs: |
+          docker build -t ally4/beginning-docker:v2 .
+          docker push ally4/beginning-docker:v2
